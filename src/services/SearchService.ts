@@ -1,4 +1,5 @@
 import { google } from "googleapis"
+import { BadRequest } from "../types/exceptions/BadRequest"
 
 class SearchService {
     private static instance: SearchService | undefined
@@ -17,7 +18,7 @@ class SearchService {
         /*
             Help: https://developers.google.com/youtube/v3/docs/search/list
             videoCategoryId: 10 = Music
-            videoSyndicated: true = Only videos that can play outside YouTube
+            videoSyndicated: true = Only videos that can be played outside YouTube
         */
         const response = await google.youtube("v3").search.list({
             auth: process.env.YOUTUBE_DATA_V3_API_KEY,
@@ -29,10 +30,12 @@ class SearchService {
             safeSearch: "moderate",
             videoSyndicated: "true",
             videoCategoryId: "10"
-        }).catch()
+        }).catch(() => {
+            throw new BadRequest("Server was not able to search for any videos")
+        })
 
         if (response.status !== 200 || response.data.items?.length === 0)
-            return { }
+            throw new BadRequest("No videos were found for this query")
 
         return response.data.items.map(item => {
             return {
