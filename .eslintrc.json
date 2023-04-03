@@ -42,6 +42,11 @@
         "no-multi-spaces": "warn",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-implicit-any": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "template-curly-spacing": [
+            "error",
+            "never"
+        ],
         "spaced-comment": [
             "warn",
             "always",
