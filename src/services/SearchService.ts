@@ -1,5 +1,6 @@
 import { google } from "googleapis"
 import { BadRequest } from "../types/exceptions/BadRequest"
+import { SearchItemOption } from "../types/SearchItemOption"
 
 class SearchService {
     private static instance: SearchService | undefined
@@ -14,7 +15,7 @@ class SearchService {
         return this.instance
     }
 
-    youtubeSearch = async (query: string) => {
+    youtubeSearch = async (query: string): Promise<SearchItemOption[]> => {
         /*
             Help: https://developers.google.com/youtube/v3/docs/search/list
             videoCategoryId: 10 = Music
@@ -31,18 +32,19 @@ class SearchService {
             videoSyndicated: "true",
             videoCategoryId: "10"
         }).catch(() => {
-            throw new BadRequest("Server was not able to search for any videos")
+            throw new BadRequest("Server was not able to search for any songs.")
         })
 
         if (response.status !== 200 || response.data.items?.length === 0)
-            throw new BadRequest("No videos were found for this query")
+            throw new BadRequest("No songs were found for this query.")
 
         return response.data.items.map(item => {
             return {
-                videoId: item.id.videoId,
+                id: item.id.videoId,
+                source: "youtube",
                 title: item.snippet.title,
-                channelTitle: item.snippet.channelTitle,
-                thumbnail: item.snippet.thumbnails.high
+                author: item.snippet.channelTitle,
+                thumbnail: item.snippet.thumbnails.high.url
             }
         })
     }
