@@ -1,4 +1,4 @@
-import { ResourceOrigin } from "./ResourceOrigin"
+import { ResourceOrigin } from "./ResourceOrigin.js"
 
 interface SearchItemOption {
     id: string

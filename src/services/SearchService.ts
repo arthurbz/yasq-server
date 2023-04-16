@@ -1,6 +1,6 @@
 import { google } from "googleapis"
-import { BadRequest } from "../types/exceptions/BadRequest"
-import { SearchItemOption } from "../types/SearchItemOption"
+import { BadRequest } from "../types/exceptions/BadRequest.js"
+import { SearchItemOption } from "../types/SearchItemOption.js"
 
 class SearchService {
     private static instance: SearchService | undefined

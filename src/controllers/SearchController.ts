@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
-import { getFirstOnlyFromQueryParams } from "../utils/QueryParamsUtils"
-import { SearchService } from "../services/SearchService"
+import { getFirstOnlyFromQueryParams } from "../utils/QueryParamsUtils.js"
+import { SearchService } from "../services/SearchService.js"
 
 class SearchController {
     searchService = SearchService.getInstance()
