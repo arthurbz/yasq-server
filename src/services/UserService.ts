@@ -14,12 +14,42 @@ class UserService {
     }
 
     create = async (name: string) => {
-        await prisma.user.create({
+        const user = await prisma.user.create({
             data: {
                 name: name,
                 createdAt: new Date(),
                 updatedAt: new Date()
             }
+        })
+
+        return user
+    }
+
+    findByIdOrThrow = async (id: string) => {
+        const user = await prisma.user.findFirstOrThrow({
+            where: { id }
+        })
+
+        return user
+    }
+
+    update = async (id: string, name: string) => {
+        const user = await prisma.user.update({
+            data: {
+                name,
+                updatedAt: new Date()
+            },
+            where: { id }
+        })
+
+        return user
+    }
+
+    delete = async (id: string) => {
+        await this.findByIdOrThrow(id)
+
+        await prisma.user.delete({
+            where: { id }
         })
     }
 }
