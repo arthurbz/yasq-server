@@ -42,8 +42,8 @@ class SearchService {
             return {
                 id: item.id.videoId,
                 source: "youtube",
-                title: item.snippet.title,
-                author: item.snippet.channelTitle,
+                name: item.snippet.title,
+                artist: item.snippet.channelTitle,
                 thumbnail: item.snippet.thumbnails.high.url
             }
         })

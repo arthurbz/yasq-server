@@ -3,8 +3,8 @@ import { ResourceOrigin } from "./ResourceOrigin.js"
 interface SearchItemOption {
     id: string
     source: ResourceOrigin
-    author: string
-    title: string
+    artist: string
+    name: string
     thumbnail: string
 }
 
