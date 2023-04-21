@@ -1,6 +1,6 @@
 import { google } from "googleapis"
 import { BadRequest } from "../types/exceptions/BadRequest.js"
-import { SearchItemOption } from "../types/SearchItemOption.js"
+import { Song } from "../types/Song.js"
 
 class SearchService {
     private static instance: SearchService | undefined
@@ -15,7 +15,7 @@ class SearchService {
         return this.instance
     }
 
-    youtubeSearch = async (query: string): Promise<SearchItemOption[]> => {
+    youtubeSearch = async (query: string): Promise<Song[]> => {
         /*
             Help: https://developers.google.com/youtube/v3/docs/search/list
             videoCategoryId: 10 = Music
@@ -40,7 +40,7 @@ class SearchService {
 
         return response.data.items.map(item => {
             return {
-                id: item.id.videoId,
+                originId: item.id.videoId,
                 source: "youtube",
                 name: item.snippet.title,
                 artist: item.snippet.channelTitle,

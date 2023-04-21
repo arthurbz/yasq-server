@@ -7,6 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ResourceOrigin {
+  youtube
+}
+
 model Room {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
@@ -14,6 +18,7 @@ model Room {
   updatedAt DateTime
   userId    String   @db.ObjectId
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  songs     Song[]
 }
 
 model User {
@@ -22,4 +27,16 @@ model User {
   createdAt DateTime
   updatedAt DateTime
   rooms     Room[]
+}
+
+// originId - This is the videoId if the source is YouTube
+model Song {
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  originId  String
+  name      String
+  source    ResourceOrigin
+  artist    String
+  thumbnail String
+  roomId    String         @db.ObjectId
+  room      Room           @relation(fields: [roomId], references: [id])
 }
