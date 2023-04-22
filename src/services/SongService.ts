@@ -42,6 +42,32 @@ class SongService {
         return song
     }
 
+    findSongsInRoom = async (roomId: string) => {
+        const room = await this.roomService.findByIdOrThrow(roomId)
+
+        const songs = await prisma.song.findMany({
+            where: { roomId: room.id }
+        })
+
+        return songs
+    }
+
+    findByIdOrThrow = async (id: string) => {
+        const song = await prisma.song.findFirstOrThrow({
+            where: { id: id }
+        })
+
+        return song
+    }
+
+    remove = async (id: string) => {
+        await this.findByIdOrThrow(id)
+
+        await prisma.song.delete({
+            where: { id }
+        })
+    }
+
     private getSongFromYoutube = async (info: string): Promise<Song | undefined> => {
         try {
             const validVideoId = ytdl.getVideoID(info)

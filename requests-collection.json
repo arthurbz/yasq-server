@@ -1,1 +1,432 @@
-{"_type":"export","__export_format":4,"__export_date":"2023-04-17T23:49:39.925Z","__export_source":"insomnia.desktop.app:v2022.5.1","resources":[{"_id":"req_028aed7fe8d9496d95e0548f3de18dad","parentId":"fld_64e70a41cbca4e5bb47f2e2c18d86e9c","modified":1681775192802,"created":1681674920145,"url":"{{ _.server }}/user/create","name":"Create","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"User\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_762e103fb95d4777835c970dd7c3e2bd"}],"authentication":{},"metaSortKey":-1681674920145,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_64e70a41cbca4e5bb47f2e2c18d86e9c","parentId":"wrk_e0cf40013b0d44f48359869d1d9cec6c","modified":1681691438275,"created":1681691438275,"name":"User","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1681691438275,"_type":"request_group"},{"_id":"wrk_e0cf40013b0d44f48359869d1d9cec6c","parentId":null,"modified":1680469359710,"created":1680469359710,"name":"YASQ","description":"","scope":"collection","_type":"workspace"},{"_id":"req_f05d37bbcf0d4c2883fcfad1b6a238b9","parentId":"fld_64e70a41cbca4e5bb47f2e2c18d86e9c","modified":1681774485536,"created":1681766123220,"url":"{{ _.server }}/user/find/643dbbd5004b3e3aaf0aa2c1","name":"Find By Id","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1681376930427,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_c725a09193c04aba9f3983fd74641e62","parentId":"fld_64e70a41cbca4e5bb47f2e2c18d86e9c","modified":1681774795109,"created":1681767038112,"url":"{{ _.server }}/user/update","name":"Update","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"id\": \"643c93b960964e9de1c5ea50\",\n\t\"name\": \"name\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_1845cf9955c8466b98af7fa9e68b643a"}],"authentication":{},"metaSortKey":-1681227935568,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f49076f497e8490d8ae012198995e71e","parentId":"fld_64e70a41cbca4e5bb47f2e2c18d86e9c","modified":1681775166177,"created":1681767144731,"url":"{{ _.server }}/user/delete/643dda2a3a970011a91f1105","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1681227935518,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_d42a838e7ea5449dbfa138037f84188c","parentId":"fld_62454278891a42979251e54cfd7504d9","modified":1681775351463,"created":1681691442751,"url":"{{ _.server }}/room/create","name":"Create","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Roooom\",\n\t\"userId\": \"643dda593a970011a91f1107\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_762e103fb95d4777835c970dd7c3e2bd"}],"authentication":{},"metaSortKey":-1681078940709,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_62454278891a42979251e54cfd7504d9","parentId":"wrk_e0cf40013b0d44f48359869d1d9cec6c","modified":1681674918924,"created":1681674918924,"name":"Room","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1681674918924,"_type":"request_group"},{"_id":"req_3d1420a479ca431fab48421b5cf0b499","parentId":"fld_62454278891a42979251e54cfd7504d9","modified":1681775355741,"created":1681774516185,"url":"{{ _.server }}/room/find/643ddaf8e3383314352be68e","name":"Find By Id","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1681078940659,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_a4729a2ad5424d71bd1c718f338e5165","parentId":"fld_62454278891a42979251e54cfd7504d9","modified":1681775358080,"created":1681774800178,"url":"{{ _.server }}/room/update","name":"Update","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"id\": \"643dda5e3a970011a91f1108\",\n\t\"name\": \"Room Name\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_1845cf9955c8466b98af7fa9e68b643a"}],"authentication":{},"metaSortKey":-1681078940609,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_594859ea351a4481b17795d50c04b913","parentId":"fld_62454278891a42979251e54cfd7504d9","modified":1681775325434,"created":1681775254677,"url":"{{ _.server }}/room/delete/643dda5e3a970011a91f1108","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1681078940559,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_ae7ec9a2a5764a99940fd10ab7437b65","parentId":"fld_4bb559e6cefe4136bdbe5e8c9bf8f44d","modified":1680485250372,"created":1680482961273,"url":"{{ _.server }}/search/youtube","name":"YouTube","description":"","method":"GET","body":{},"parameters":[{"id":"pair_d3e19d50e7e84efbaae329d03d94ce78","name":"query","value":"fkj","description":""}],"headers":[],"authentication":{},"metaSortKey":-1680482961273,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_4bb559e6cefe4136bdbe5e8c9bf8f44d","parentId":"wrk_e0cf40013b0d44f48359869d1d9cec6c","modified":1680482959853,"created":1680482959853,"name":"Search","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1680482959853,"_type":"request_group"},{"_id":"env_a2d908b7381f526df473bdb1a38346d1ab3d9c64","parentId":"wrk_e0cf40013b0d44f48359869d1d9cec6c","modified":1680482990660,"created":1680469359722,"name":"Base Environment","data":{"server":"http://localhost:8080"},"dataPropertyOrder":{"&":["server"]},"color":null,"isPrivate":false,"metaSortKey":1680469359722,"_type":"environment"},{"_id":"jar_a2d908b7381f526df473bdb1a38346d1ab3d9c64","parentId":"wrk_e0cf40013b0d44f48359869d1d9cec6c","modified":1680469359723,"created":1680469359723,"name":"Default Jar","cookies":[],"_type":"cookie_jar"},{"_id":"spc_2daa3519468047cf9b3b77fd8fe170b5","parentId":"wrk_e0cf40013b0d44f48359869d1d9cec6c","modified":1680469359719,"created":1680469359719,"fileName":"YASQ","contents":"","contentType":"yaml","_type":"api_spec"}]}
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2023-04-22T00:21:11.482Z",
+    "__export_source": "insomnia.desktop.app:v2022.5.1",
+    "resources": [
+        {
+            "_id": "req_028aed7fe8d9496d95e0548f3de18dad",
+            "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
+            "modified": 1681775192802,
+            "created": 1681674920145,
+            "url": "{{ _.server }}/user/create",
+            "name": "Create",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\": \"User\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_762e103fb95d4777835c970dd7c3e2bd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1681674920145,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1681691438275,
+            "created": 1681691438275,
+            "name": "User",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1681691438275,
+            "_type": "request_group"
+        },
+        {
+            "_id": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "parentId": null,
+            "modified": 1680469359710,
+            "created": 1680469359710,
+            "name": "YASQ",
+            "description": "",
+            "scope": "collection",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_f05d37bbcf0d4c2883fcfad1b6a238b9",
+            "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
+            "modified": 1681774485536,
+            "created": 1681766123220,
+            "url": "{{ _.server }}/user/find/643dbbd5004b3e3aaf0aa2c1",
+            "name": "Find By Id",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1681376930427,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_c725a09193c04aba9f3983fd74641e62",
+            "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
+            "modified": 1681774795109,
+            "created": 1681767038112,
+            "url": "{{ _.server }}/user/update",
+            "name": "Update",
+            "description": "",
+            "method": "PUT",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"id\": \"643c93b960964e9de1c5ea50\",\n\t\"name\": \"name\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_1845cf9955c8466b98af7fa9e68b643a"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1681227935568,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_f49076f497e8490d8ae012198995e71e",
+            "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
+            "modified": 1681775166177,
+            "created": 1681767144731,
+            "url": "{{ _.server }}/user/delete/643dda2a3a970011a91f1105",
+            "name": "Delete",
+            "description": "",
+            "method": "DELETE",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1681227935518,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_d42a838e7ea5449dbfa138037f84188c",
+            "parentId": "fld_62454278891a42979251e54cfd7504d9",
+            "modified": 1682121677161,
+            "created": 1681691442751,
+            "url": "{{ _.server }}/room/create",
+            "name": "Create",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\": \"Roooom\",\n\t\"userId\": \"643dda593a970011a91f1107\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_762e103fb95d4777835c970dd7c3e2bd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1681078940709,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_62454278891a42979251e54cfd7504d9",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1681674918924,
+            "created": 1681674918924,
+            "name": "Room",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1681674918924,
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_3d1420a479ca431fab48421b5cf0b499",
+            "parentId": "fld_62454278891a42979251e54cfd7504d9",
+            "modified": 1681775355741,
+            "created": 1681774516185,
+            "url": "{{ _.server }}/room/find/643ddaf8e3383314352be68e",
+            "name": "Find By Id",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1681078940659,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_a4729a2ad5424d71bd1c718f338e5165",
+            "parentId": "fld_62454278891a42979251e54cfd7504d9",
+            "modified": 1682121679146,
+            "created": 1681774800178,
+            "url": "{{ _.server }}/room/update",
+            "name": "Update",
+            "description": "",
+            "method": "PUT",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"id\": \"643dda5e3a970011a91f1108\",\n\t\"name\": \"Room Name\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_1845cf9955c8466b98af7fa9e68b643a"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1681078940609,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_594859ea351a4481b17795d50c04b913",
+            "parentId": "fld_62454278891a42979251e54cfd7504d9",
+            "modified": 1681775325434,
+            "created": 1681775254677,
+            "url": "{{ _.server }}/room/delete/643dda5e3a970011a91f1108",
+            "name": "Delete",
+            "description": "",
+            "method": "DELETE",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1681078940559,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_da85e07c6b884c15b4eca72c1910e22a",
+            "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
+            "modified": 1682122705595,
+            "created": 1682099768020,
+            "url": "{{ _.server }}/song/add",
+            "name": "Add",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"info\": \"https://www.youtube.com/watch?v=c0-hvjV2A5Y&t=3542s\",\n\t\"roomId\": \"643ddaf8e3383314352be68e\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_762e103fb95d4777835c970dd7c3e2bd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1680929944504.625,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1682099763048,
+            "created": 1682099760309,
+            "name": "Song",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1681078939388.5,
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_1fa42d59e27a48119e0d3cb1072a35cd",
+            "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
+            "modified": 1682122696020,
+            "created": 1682121601314,
+            "url": "{{ _.server }}/song/find/room/643ddaf8e3383314352be68e",
+            "name": "Find Songs in Room",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1680929944492.125,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_a4694428e8f84c8299673e8297987e1a",
+            "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
+            "modified": 1682122841759,
+            "created": 1682122692805,
+            "url": "{{ _.server }}/song/remove/644327b6b9fa53040661aeaa",
+            "name": "Remove",
+            "description": "",
+            "method": "DELETE",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1680929944479.625,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_ae7ec9a2a5764a99940fd10ab7437b65",
+            "parentId": "fld_4bb559e6cefe4136bdbe5e8c9bf8f44d",
+            "modified": 1680485250372,
+            "created": 1680482961273,
+            "url": "{{ _.server }}/search/youtube",
+            "name": "YouTube",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [
+                {
+                    "id": "pair_d3e19d50e7e84efbaae329d03d94ce78",
+                    "name": "query",
+                    "value": "fkj",
+                    "description": ""
+                }
+            ],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1680482961273,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_4bb559e6cefe4136bdbe5e8c9bf8f44d",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1680482959853,
+            "created": 1680482959853,
+            "name": "Search",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1680482959853,
+            "_type": "request_group"
+        },
+        {
+            "_id": "env_a2d908b7381f526df473bdb1a38346d1ab3d9c64",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1680482990660,
+            "created": 1680469359722,
+            "name": "Base Environment",
+            "data": {
+                "server": "http://localhost:8080"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "server"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1680469359722,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_a2d908b7381f526df473bdb1a38346d1ab3d9c64",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1680469359723,
+            "created": 1680469359723,
+            "name": "Default Jar",
+            "cookies": [],
+            "_type": "cookie_jar"
+        },
+        {
+            "_id": "spc_2daa3519468047cf9b3b77fd8fe170b5",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1680469359719,
+            "created": 1680469359719,
+            "fileName": "YASQ",
+            "contents": "",
+            "contentType": "yaml",
+            "_type": "api_spec"
+        }
+    ]
+}
