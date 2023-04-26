@@ -1,4 +1,5 @@
 import { prisma } from "../database/PrismaInstance.js"
+import { generateRandomNickname } from "../utils/UserUtils.js"
 
 class UserService {
     private static instance: UserService | undefined
@@ -17,6 +18,20 @@ class UserService {
         const user = await prisma.user.create({
             data: {
                 name: name,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        })
+
+        return user
+    }
+
+    createRandomUser = async () => {
+        const nickname = generateRandomNickname()
+
+        const user = await prisma.user.create({
+            data: {
+                name: nickname,
                 createdAt: new Date(),
                 updatedAt: new Date()
             }

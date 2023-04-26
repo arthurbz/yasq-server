@@ -16,6 +16,12 @@ class UserController {
         res.status(201).send({ id: user.id })
     }
 
+    createRandomuser = async (req: Request, res: Response) => {
+        const user = await this.userService.createRandomUser()
+
+        res.status(201).send({ id: user.id })
+    }
+
     findById = async (req: Request, res: Response) => {
         const { id } = req.params
 
