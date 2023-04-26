@@ -1,9 +1,11 @@
 import { Request, Response } from "express"
 import { RoomService } from "../services/RoomService.js"
+import { UserService } from "../services/UserService.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
 
 class RoomController {
     roomService = RoomService.getInstance()
+    userService = UserService.getInstance()
 
     create = async (req: Request, res: Response) => {
         const { name, userId } = req.body
@@ -11,12 +13,22 @@ class RoomController {
         if (!name)
             throw new UnprocessableEntity("Missing name to create room.")
 
-        if (!userId)
-            throw new UnprocessableEntity("Missing user to create room.")
-
         const room = await this.roomService.create(name, userId)
 
         res.status(201).send({ id: room.id })
+    }
+
+    createWithRandomUser = async (req: Request, res: Response) => {
+        const { name } = req.body
+
+        if (!name)
+            throw new UnprocessableEntity("Missing name to create room.")
+
+        const user = await this.userService.createRandomUser()
+        const room = await this.roomService.create(name, user.id)
+
+        res.status(201).send({ roomId: room.id, userId: user.id })
+        return
     }
 
     findById = async (req: Request, res: Response) => {

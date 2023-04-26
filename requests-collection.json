@@ -1,13 +1,13 @@
 {
     "_type": "export",
     "__export_format": 4,
-    "__export_date": "2023-04-26T21:58:02.931Z",
+    "__export_date": "2023-04-26T22:49:49.956Z",
     "__export_source": "insomnia.desktop.app:v2022.5.1",
     "resources": [
         {
             "_id": "req_028aed7fe8d9496d95e0548f3de18dad",
             "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
-            "modified": 1682544107506,
+            "modified": 1682548758313,
             "created": 1681674920145,
             "url": "{{ _.server }}/user/create",
             "name": "Create",
@@ -162,7 +162,7 @@
         {
             "_id": "req_d42a838e7ea5449dbfa138037f84188c",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1682544103833,
+            "modified": 1682548770783,
             "created": 1681691442751,
             "url": "{{ _.server }}/room/create",
             "name": "Create",
@@ -170,7 +170,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"name\": \"Roooom\",\n\t\"userId\": \"643dda593a970011a91f1107\"\n}"
+                "text": "{\n\t\"name\": \"Roooom\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -202,6 +202,38 @@
             "environmentPropertyOrder": null,
             "metaSortKey": -1681674918924,
             "_type": "request_group"
+        },
+        {
+            "_id": "req_ce896d2889f94835a6d4c2d884846524",
+            "parentId": "fld_62454278891a42979251e54cfd7504d9",
+            "modified": 1682549285208,
+            "created": 1682549002752,
+            "url": "{{ _.server }}/room/create/random",
+            "name": "Create With Random User",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\": \"Roooom\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_762e103fb95d4777835c970dd7c3e2bd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1681078940684,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
         },
         {
             "_id": "req_3d1420a479ca431fab48421b5cf0b499",
