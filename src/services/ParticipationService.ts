@@ -50,6 +50,23 @@ class ParticipationService {
 
     leaveRoom = async (id: string) => {
         const participation = await this.findByIdOrThrow(id)
+        const roomId = participation.roomId
+        const roomParticipants = await this.findRoomParticipants(roomId)
+
+        if (roomParticipants.length == 1) {
+            await this.delete(participation.id)
+            await this.roomService.delete(roomId)
+            return
+        }
+
+        if (roomParticipants.length >= 2 && participation.isOwner) {
+            const roomOwners = await this.findRoomOwners(roomId)
+
+            if (roomOwners.length == 1)
+                await this.addNewRandomOwner(roomId)
+        }
+
+        await this.delete(participation.id)
     }
 
     isUserInRoom = async ({ userId, roomId }: UserAndRoom) => {
@@ -81,9 +98,11 @@ class ParticipationService {
     }
 
     findRoomParticipants = async (roomId: string) => {
+        const room = await this.roomService.findByIdOrThrow(roomId)
+
         const participants = await prisma.participation.findMany({
             include: { user: true },
-            where: { roomId }
+            where: { roomId: room.id }
         })
 
         return participants
@@ -98,6 +117,61 @@ class ParticipationService {
         })
 
         return owners
+    }
+
+    addOwnership = async (id: string) => {
+        const participation = await this.findByIdOrThrow(id)
+
+        if (participation.isOwner)
+            return
+
+        await prisma.participation.update({
+            data: {
+                isOwner: true,
+                updatedAt: new Date()
+            },
+            where: { id: participation.id }
+        })
+    }
+
+    removeOwnership = async (id: string) => {
+        const participation = await this.findByIdOrThrow(id)
+
+        if (!participation.isOwner)
+            return
+
+        await prisma.participation.update({
+            data: {
+                isOwner: false,
+                updatedAt: new Date()
+            },
+            where: { id: participation.id }
+        })
+    }
+
+    private addNewRandomOwner = async (roomId: string) => {
+        const newOwnerParticipation = await prisma.participation.findFirst({
+            where: {
+                isOwner: false,
+                roomId: roomId
+            }
+        })
+
+        await prisma.participation.update({
+            data: {
+                isOwner: true,
+                updatedAt: new Date()
+            },
+            where: { id: newOwnerParticipation.id }
+        })
+    }
+
+    private delete = async (id: string) => {
+        const participation = await this.findByIdOrThrow(id)
+
+        await prisma.participation.delete({
+            where: { id: participation.id }
+        })
     }
 }
 

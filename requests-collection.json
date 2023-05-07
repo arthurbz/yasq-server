@@ -1,13 +1,13 @@
 {
     "_type": "export",
     "__export_format": 4,
-    "__export_date": "2023-04-26T22:49:49.956Z",
+    "__export_date": "2023-05-07T17:36:56.883Z",
     "__export_source": "insomnia.desktop.app:v2022.5.1",
     "resources": [
         {
             "_id": "req_028aed7fe8d9496d95e0548f3de18dad",
             "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
-            "modified": 1682548758313,
+            "modified": 1683471275772,
             "created": 1681674920145,
             "url": "{{ _.server }}/user/create",
             "name": "Create",
@@ -107,7 +107,7 @@
         {
             "_id": "req_c725a09193c04aba9f3983fd74641e62",
             "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
-            "modified": 1682128106127,
+            "modified": 1683476855628,
             "created": 1681767038112,
             "url": "{{ _.server }}/user/update",
             "name": "Update",
@@ -162,7 +162,7 @@
         {
             "_id": "req_d42a838e7ea5449dbfa138037f84188c",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1682548770783,
+            "modified": 1683477325801,
             "created": 1681691442751,
             "url": "{{ _.server }}/room/create",
             "name": "Create",
@@ -170,7 +170,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"name\": \"Roooom\"\n}"
+                "text": "{\n\t\"name\": \"Roooom\",\n\t\"userId\": \"6457bbaf9cab3afbd655a3e0\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -206,7 +206,7 @@
         {
             "_id": "req_ce896d2889f94835a6d4c2d884846524",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1682549285208,
+            "modified": 1683478240853,
             "created": 1682549002752,
             "url": "{{ _.server }}/room/create/random",
             "name": "Create With Random User",
@@ -214,7 +214,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"name\": \"Roooom\"\n}"
+                "text": "{\n\t\"name\": \"Random\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -238,9 +238,9 @@
         {
             "_id": "req_3d1420a479ca431fab48421b5cf0b499",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1681775355741,
+            "modified": 1683477330665,
             "created": 1681774516185,
-            "url": "{{ _.server }}/room/find/643ddaf8e3383314352be68e",
+            "url": "{{ _.server }}/room/find/6457bbb99cab3afbd655a3e1",
             "name": "Find By Id",
             "description": "",
             "method": "GET",
@@ -261,7 +261,7 @@
         {
             "_id": "req_a4729a2ad5424d71bd1c718f338e5165",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1682128101459,
+            "modified": 1683472718292,
             "created": 1681774800178,
             "url": "{{ _.server }}/room/update",
             "name": "Update",
@@ -314,9 +314,99 @@
             "_type": "request"
         },
         {
+            "_id": "req_c8a35e448ed04044995e80743f9ed2af",
+            "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
+            "modified": 1683480948842,
+            "created": 1683473278659,
+            "url": "{{ _.server }}/participation/join",
+            "name": "Join",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"roomId\": \"6457bbb99cab3afbd655a3e1\",\n\t\"userId\": \"6457c3abfd12b4202299e084\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_762e103fb95d4777835c970dd7c3e2bd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1683473263867,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_b9d96b0983ea4dd1aba926ecab891524",
+            "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
+            "modified": 1683473256942,
+            "created": 1683473254077,
+            "name": "Participation",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1681376929156.25,
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_f35abef07c774eaa8a9116cbda40734a",
+            "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
+            "modified": 1683478248180,
+            "created": 1683477066477,
+            "url": "{{ _.server }}/participation/find/room/6457bbb99cab3afbd655a3e1",
+            "name": "Find Room Participants",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1683473263817,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_3d3465eef31a4366900929016af7458e",
+            "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
+            "modified": 1683480979747,
+            "created": 1683480404453,
+            "url": "{{ _.server }}/participation/leave/6457e17500ad6a4af0e80651",
+            "name": "Leave",
+            "description": "",
+            "method": "DELETE",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1683473263767,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
             "_id": "req_da85e07c6b884c15b4eca72c1910e22a",
             "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
-            "modified": 1682122705595,
+            "modified": 1683480424998,
             "created": 1682099768020,
             "url": "{{ _.server }}/song/add",
             "name": "Add",
@@ -324,7 +414,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"info\": \"https://www.youtube.com/watch?v=c0-hvjV2A5Y&t=3542s\",\n\t\"roomId\": \"643ddaf8e3383314352be68e\"\n}"
+                "text": "{\n\t\"info\": \"https://www.youtube.com/watch?v=c0-hvjV2A5Y&t=3542s\",\n\t\"roomId\": \"6457bbb99cab3afbd655a3e1\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -360,10 +450,10 @@
         {
             "_id": "req_1fa42d59e27a48119e0d3cb1072a35cd",
             "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
-            "modified": 1682122696020,
+            "modified": 1683478262711,
             "created": 1682121601314,
-            "url": "{{ _.server }}/song/find/room/643ddaf8e3383314352be68e",
-            "name": "Find Songs in Room",
+            "url": "{{ _.server }}/song/find/room/6457bbb99cab3afbd655a3e1",
+            "name": "Find Room Songs",
             "description": "",
             "method": "GET",
             "body": {},
