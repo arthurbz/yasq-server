@@ -1,11 +1,13 @@
 import { Request, Response } from "express"
 import { RoomService } from "../services/RoomService.js"
 import { UserService } from "../services/UserService.js"
+import { ParticipationService } from "../services/ParticipationService.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
 
 class RoomController {
-    roomService = RoomService.getInstance()
-    userService = UserService.getInstance()
+    private roomService = RoomService.getInstance()
+    private userService = UserService.getInstance()
+    private participationService = ParticipationService.getInstance()
 
     create = async (req: Request, res: Response) => {
         const { name, userId } = req.body
@@ -13,7 +15,11 @@ class RoomController {
         if (!name)
             throw new UnprocessableEntity("Missing name to create room.")
 
-        const room = await this.roomService.create(name, userId)
+        if (!userId)
+            throw new UnprocessableEntity("Missing user to create room.")
+
+        const room = await this.roomService.create(name)
+        await this.participationService.joinRoom({ roomId: room.id, userId: userId, isOwner: true })
 
         res.status(201).send({ id: room.id })
     }
@@ -25,7 +31,8 @@ class RoomController {
             throw new UnprocessableEntity("Missing name to create room.")
 
         const user = await this.userService.createRandomUser()
-        const room = await this.roomService.create(name, user.id)
+        const room = await this.roomService.create(name)
+        await this.participationService.joinRoom({ roomId: room.id, userId: user.id, isOwner: true })
 
         res.status(201).send({ roomId: room.id, userId: user.id })
         return

@@ -15,13 +15,10 @@ class RoomService {
         return this.instance
     }
 
-    create = async (name: string, userId: string) => {
-        const user = await this.userService.findByIdOrThrow(userId)
-
+    create = async (name: string) => {
         const room = await prisma.room.create({
             data: {
                 name,
-                userId: user.id,
                 createdAt: new Date(),
                 updatedAt: new Date()
             }
@@ -32,7 +29,6 @@ class RoomService {
 
     findByIdOrThrow = async (id: string) => {
         const room = await prisma.room.findFirstOrThrow({
-            include: { user: true },
             where: { id }
         })
 

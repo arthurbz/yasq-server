@@ -12,21 +12,31 @@ enum ResourceOrigin {
 }
 
 model Room {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  createdAt      DateTime
+  updatedAt      DateTime
+  songs          Song[]
+  participations Participation[]
+}
+
+model Participation {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  createdAt DateTime
-  updatedAt DateTime
+  isOwner   Boolean
   userId    String   @db.ObjectId
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  songs     Song[]
+  roomId    String   @db.ObjectId
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  createdAt DateTime
+  updatedAt DateTime
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  createdAt DateTime
-  updatedAt DateTime
-  rooms     Room[]
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  createdAt      DateTime
+  updatedAt      DateTime
+  participations Participation[]
 }
 
 // originId - This is the videoId if the source is YouTube
@@ -38,5 +48,5 @@ model Song {
   artist    String
   thumbnail String
   roomId    String         @db.ObjectId
-  room      Room           @relation(fields: [roomId], references: [id])
+  room      Room           @relation(fields: [roomId], references: [id], onDelete: Cascade)
 }
