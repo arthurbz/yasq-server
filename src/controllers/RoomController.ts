@@ -35,7 +35,6 @@ class RoomController {
         await this.participationService.joinRoom({ roomId: room.id, userId: user.id, isOwner: true })
 
         res.status(201).send({ roomId: room.id, userId: user.id })
-        return
     }
 
     findById = async (req: Request, res: Response) => {
