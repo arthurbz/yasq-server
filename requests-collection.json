@@ -1,7 +1,7 @@
 {
     "_type": "export",
     "__export_format": 4,
-    "__export_date": "2023-05-07T17:36:56.883Z",
+    "__export_date": "2023-05-08T00:30:09.102Z",
     "__export_source": "insomnia.desktop.app:v2022.5.1",
     "resources": [
         {
@@ -162,7 +162,7 @@
         {
             "_id": "req_d42a838e7ea5449dbfa138037f84188c",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1683477325801,
+            "modified": 1683505552259,
             "created": 1681691442751,
             "url": "{{ _.server }}/room/create",
             "name": "Create",
@@ -206,7 +206,7 @@
         {
             "_id": "req_ce896d2889f94835a6d4c2d884846524",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1683478240853,
+            "modified": 1683505688012,
             "created": 1682549002752,
             "url": "{{ _.server }}/room/create/random",
             "name": "Create With Random User",
@@ -316,7 +316,7 @@
         {
             "_id": "req_c8a35e448ed04044995e80743f9ed2af",
             "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
-            "modified": 1683480948842,
+            "modified": 1683505545070,
             "created": 1683473278659,
             "url": "{{ _.server }}/participation/join",
             "name": "Join",
@@ -356,6 +356,38 @@
             "environmentPropertyOrder": null,
             "metaSortKey": -1681376929156.25,
             "_type": "request_group"
+        },
+        {
+            "_id": "req_d2ecea5efcae4c3095e067e9fc621b82",
+            "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
+            "modified": 1683505689549,
+            "created": 1683505444809,
+            "url": "{{ _.server }}/participation/join/random",
+            "name": "Join With Random User",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"roomId\": \"64584192fb5a8cbb3089c059\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "id": "pair_762e103fb95d4777835c970dd7c3e2bd"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1683473263842,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
         },
         {
             "_id": "req_f35abef07c774eaa8a9116cbda40734a",
