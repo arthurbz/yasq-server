@@ -27,7 +27,7 @@ class ParticipationController {
         const user = await this.userService.createRandomUser()
         const participation = await this.participationService.joinRoom({ roomId, userId: user.id, isOwner: false })
 
-        res.status(201).send({ participationId: participation.id, userId: user.id })
+        res.status(201).send({ participationId: participation.id, roomId: participation.roomId, userId: user.id })
     }
 
     leave = async (req: Request, res: Response) => {
