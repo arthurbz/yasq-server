@@ -1,16 +1,6 @@
-// import fs from "fs"
+import fs from "fs"
+import { globby } from "globby"
 import { firstnames, lastnames } from "../resources/FakeNames.js"
-
-/*
-export function getAllFilesFromFolder(dir: string) {
-    return fs.readdirSync(dir).map(file => {
-        file = dir + "/" + file
-        const stat = fs.statSync(file)
-
-        return stat && stat.isDirectory() ? getAllFilesFromFolder(file) : file
-    })
-}
-*/
 
 export function generateRandomNickname() {
     const firstnameIndex = Math.floor(Math.random() * firstnames.length)
@@ -19,11 +9,21 @@ export function generateRandomNickname() {
     return `${firstnames[firstnameIndex]} ${lastnames[lastnameIndex]}`
 }
 
-/*
-export function getRandomPhoto() {
-    const images = this.getAllFilesFromFolder("./public/resources/images")
+export async function getRandomProfilePicture() {
+    const images = await globby("public/images", {
+        expandDirectories: {
+            extensions: ["png"]
+        }
+    })
+
+    if (images.length == 0)
+        throw new Error("Server doesn't have any images yet.")
+
     const result = images[Math.floor(Math.random() * images.length)]
 
-    return result.replace("./public/resources/images", "")
+    return result.replace("public", "")
 }
-*/
+
+export function pictureExists(picturePath: string) {
+    return fs.existsSync(`public/${picturePath}`)
+}

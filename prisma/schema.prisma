@@ -12,7 +12,7 @@ enum ResourceOrigin {
 }
 
 model Room {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   createdAt      DateTime
   updatedAt      DateTime
@@ -32,8 +32,9 @@ model Participation {
 }
 
 model User {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
   name           String
+  pfpPath        String
   createdAt      DateTime
   updatedAt      DateTime
   participations Participation[]

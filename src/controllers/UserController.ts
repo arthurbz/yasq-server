@@ -6,12 +6,12 @@ class UserController {
     userService = UserService.getInstance()
 
     create = async (req: Request, res: Response) => {
-        const { name } = req.body
+        const { name, pfpPath } = req.body
 
         if (!name)
             throw new UnprocessableEntity("Missing name to create user.")
 
-        const user = await this.userService.create(name)
+        const user = await this.userService.create({ name, pfpPath })
 
         res.status(201).send({ id: user.id })
     }
@@ -34,12 +34,12 @@ class UserController {
     }
 
     update = async (req: Request, res: Response) => {
-        const { id, name } = req.body
+        const { id, name, pfpPath } = req.body
 
-        if (!id || !name)
-            throw new UnprocessableEntity("Need id and name to update user.")
+        if (!id)
+            throw new UnprocessableEntity("Missing user to update.")
 
-        await this.userService.update(id, name)
+        await this.userService.update({ id, name, pfpPath })
 
         res.status(204).send()
     }
