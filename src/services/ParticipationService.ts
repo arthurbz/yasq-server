@@ -31,21 +31,23 @@ class ParticipationService {
         const user = await this.userService.findByIdOrThrow(userId)
         const room = await this.roomService.findByIdOrThrow(roomId)
 
-        const userAlreadyInRoom = await this.isUserInRoom({ userId, roomId })
-        if (userAlreadyInRoom)
-            throw new UnprocessableEntity("User already is in the room.")
-
-        const participation = await prisma.participation.create({
-            data: {
-                isOwner,
+        const existingParticipation = await prisma.participation.findFirst({
+            where: {
                 userId: user.id,
-                roomId: room.id,
-                createdAt: new Date(),
-                updatedAt: new Date()
+                roomId: room.id
             }
         })
 
-        return participation
+        return existingParticipation ||
+            await prisma.participation.create({
+                data: {
+                    isOwner,
+                    userId: user.id,
+                    roomId: room.id,
+                    createdAt: new Date(),
+                    updatedAt: new Date()
+                }
+            })
     }
 
     leaveRoom = async (id: string) => {
