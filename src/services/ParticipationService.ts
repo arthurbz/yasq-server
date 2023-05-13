@@ -1,7 +1,6 @@
 import { prisma } from "../database/PrismaInstance.js"
 import { UserService } from "./UserService.js"
 import { RoomService } from "./RoomService.js"
-import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
 
 interface UserAndRoom {
     userId: string
