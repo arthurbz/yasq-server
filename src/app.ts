@@ -3,6 +3,8 @@ import express from "express"
 import cors from "cors"
 import { router } from "./router.js"
 import { errorHandler } from "./middlewares/ErrorHandler.js"
+import { Server } from "socket.io"
+import { createServer } from "http"
 
 const app = express()
 
@@ -12,4 +14,7 @@ app.use(express.json())
 app.use(router)
 app.use(errorHandler)
 
-export { app }
+const server = createServer(app)
+const io = new Server(server, { cors: { origin: "*" } })
+
+export { server, io }
