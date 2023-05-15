@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { ParticipationService } from "../services/ParticipationService.js"
 import { UserService } from "../services/UserService.js"
+import { io } from "../app.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
 
 class ParticipationController {
@@ -15,6 +16,7 @@ class ParticipationController {
 
         const participation = await this.participationService.joinRoom({ roomId, userId, isOwner: false })
 
+        io.in(roomId).emit("refreshUsers")
         res.status(201).send({ id: participation.id })
     }
 
@@ -27,6 +29,7 @@ class ParticipationController {
         const user = await this.userService.createRandomUser()
         const participation = await this.participationService.joinRoom({ roomId, userId: user.id, isOwner: false })
 
+        io.in(roomId).emit("refreshUsers")
         res.status(201).send({ participationId: participation.id, roomId: participation.roomId, userId: user.id })
     }
 
@@ -36,8 +39,10 @@ class ParticipationController {
         if (!id)
             throw new UnprocessableEntity("Missing participation to leave the room.")
 
+        const participation = await this.participationService.findByIdOrThrow(id)
         await this.participationService.leaveRoom(id)
 
+        io.in(participation.roomId).emit("refreshUsers")
         res.status(204).send()
     }
 

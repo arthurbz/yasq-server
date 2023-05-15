@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { SongService } from "../services/SongService.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
+import { io } from "../app.js"
 
 class SongController {
     songService = SongService.getInstance()
@@ -16,6 +17,7 @@ class SongController {
 
         const song = await this.songService.add(info, roomId)
 
+        io.in(roomId).emit("refreshSongs")
         res.status(201).send({ id: song.id })
     }
 
@@ -25,8 +27,10 @@ class SongController {
         if (!id)
             throw new UnprocessableEntity("Missing song to remove.")
 
+        const song = await this.songService.findByIdOrThrow(id)
         await this.songService.remove(id)
 
+        io.in(song.roomId).emit("refreshSongs")
         res.status(204).send()
     }
 
