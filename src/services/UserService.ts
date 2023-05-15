@@ -77,11 +77,13 @@ class UserService {
     }
 
     delete = async (id: string) => {
-        await this.findByIdOrThrow(id)
+        const user = await this.findByIdOrThrow(id)
 
         await prisma.user.delete({
             where: { id }
         })
+
+        return user
     }
 }
 

@@ -61,11 +61,13 @@ class SongService {
     }
 
     remove = async (id: string) => {
-        await this.findByIdOrThrow(id)
+        const song = await this.findByIdOrThrow(id)
 
         await prisma.song.delete({
             where: { id }
         })
+
+        return song
     }
 
     private getSongFromYoutube = async (info: string): Promise<Song | undefined> => {

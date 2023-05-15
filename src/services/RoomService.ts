@@ -48,11 +48,13 @@ class RoomService {
     }
 
     delete = async (id: string) => {
-        await this.findByIdOrThrow(id)
+        const room = await this.findByIdOrThrow(id)
 
         await prisma.room.delete({
             where: { id }
         })
+
+        return room
     }
 }
 

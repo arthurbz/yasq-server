@@ -68,6 +68,8 @@ class ParticipationService {
         }
 
         await this.delete(participation.id)
+
+        return participation
     }
 
     isUserInRoom = async ({ userId, roomId }: UserAndRoom) => {
