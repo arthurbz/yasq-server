@@ -19,9 +19,17 @@ class RoomController {
             throw new UnprocessableEntity("Missing user to create room.")
 
         const room = await this.roomService.create(name)
-        await this.participationService.joinRoom({ roomId: room.id, userId: userId, isOwner: true })
+        const participation = await this.participationService.joinRoom({
+            roomId: room.id,
+            userId: userId,
+            isOwner: true
+        })
 
-        res.status(201).send({ id: room.id })
+        res.status(201).send({
+            roomId: room.id,
+            userId: participation.userId,
+            participationId: participation.id
+        })
     }
 
     createWithRandomUser = async (req: Request, res: Response) => {
@@ -32,9 +40,17 @@ class RoomController {
 
         const user = await this.userService.createRandomUser()
         const room = await this.roomService.create(name)
-        await this.participationService.joinRoom({ roomId: room.id, userId: user.id, isOwner: true })
+        const participation = await this.participationService.joinRoom({
+            roomId: room.id,
+            userId: user.id,
+            isOwner: true
+        })
 
-        res.status(201).send({ roomId: room.id, userId: user.id })
+        res.status(201).send({
+            roomId: room.id,
+            userId: user.id,
+            participationId: participation.id
+        })
     }
 
     findById = async (req: Request, res: Response) => {

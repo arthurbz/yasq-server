@@ -27,8 +27,7 @@ class SongController {
         if (!id)
             throw new UnprocessableEntity("Missing song to remove.")
 
-        const song = await this.songService.findByIdOrThrow(id)
-        await this.songService.remove(id)
+        const song = await this.songService.remove(id)
 
         io.in(song.roomId).emit("refreshSongs")
         res.status(204).send()

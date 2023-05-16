@@ -17,7 +17,11 @@ class ParticipationController {
         const participation = await this.participationService.joinRoom({ roomId, userId, isOwner: false })
 
         io.in(roomId).emit("refreshUsers")
-        res.status(201).send({ id: participation.id })
+        res.status(201).send({
+            roomId: participation.roomId,
+            userId: participation.userId,
+            participationId: participation.id
+        })
     }
 
     joinWithRandomUser = async (req: Request, res: Response) => {
@@ -30,7 +34,11 @@ class ParticipationController {
         const participation = await this.participationService.joinRoom({ roomId, userId: user.id, isOwner: false })
 
         io.in(roomId).emit("refreshUsers")
-        res.status(201).send({ participationId: participation.id, roomId: participation.roomId, userId: user.id })
+        res.status(201).send({
+            roomId: participation.roomId,
+            userId: user.id,
+            participationId: participation.id
+        })
     }
 
     leave = async (req: Request, res: Response) => {
@@ -39,8 +47,7 @@ class ParticipationController {
         if (!id)
             throw new UnprocessableEntity("Missing participation to leave the room.")
 
-        const participation = await this.participationService.findByIdOrThrow(id)
-        await this.participationService.leaveRoom(id)
+        const participation = await this.participationService.leaveRoom(id)
 
         io.in(participation.roomId).emit("refreshUsers")
         res.status(204).send()
