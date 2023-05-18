@@ -1,3 +1,11 @@
+interface User {
+    id: string
+    name: string
+    pfpPath: string
+    createdAt: Date
+    updatedAt: Date
+}
+
 interface CreateUser {
     name: string
     pfpPath?: string | undefined
@@ -9,4 +17,4 @@ interface UpdateUser {
     pfpPath?: string | undefined
 }
 
-export type { CreateUser, UpdateUser }
+export type { User, CreateUser, UpdateUser }

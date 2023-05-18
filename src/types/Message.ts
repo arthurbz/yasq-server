@@ -1,6 +1,8 @@
+import { User } from "./models/User.js"
+
 interface Message {
-    name: string
-    pfpPath: string
+    user: User
+    roomId: string
     message: string
     date: Date
 }
