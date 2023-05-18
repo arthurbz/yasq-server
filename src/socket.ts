@@ -21,7 +21,7 @@ io.on("connection", socket => {
         console.log("Pause - Room:", room.id)
     })
 
-    socket.on("message", (message: Message) => {
-        console.log(message)
+    socket.on("sendMessage", (message: Message) => {
+        io.in(message.roomId).emit("receiveMessage", message)
     })
 })
