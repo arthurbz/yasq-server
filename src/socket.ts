@@ -1,5 +1,6 @@
 import { io } from "./app.js"
 import { RoomMultiton } from "./room/RoomMultiton.js"
+import { Message } from "./types/Message.js"
 
 io.on("connection", socket => {
     socket.on("joinRoom", (roomId: string) => {
@@ -18,5 +19,9 @@ io.on("connection", socket => {
         const room = RoomMultiton.getInstance(roomId)
         io.in(room.id).emit("pause")
         console.log("Pause - Room:", room.id)
+    })
+
+    socket.on("message", (message: Message) => {
+        console.log(message)
     })
 })
