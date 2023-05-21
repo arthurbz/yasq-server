@@ -24,7 +24,7 @@ io.on("connection", socket => {
     })
 
     socket.on("sendMessage", (message: Message<TextMessage>) => {
-        io.in(message.roomId).emit("receiveMessage", message)
+        io.in(message.roomId).emit("textMessage", message)
     })
 
     socket.on("currentState", (roomId: string) => {

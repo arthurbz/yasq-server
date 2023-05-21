@@ -1,3 +1,4 @@
+import { RoomState } from "../types/models/Room.js"
 import { Song } from "../types/models/Song.js"
 import dayjs from "dayjs"
 
@@ -25,7 +26,7 @@ class Room {
         this.pausedAt = null
     }
 
-    getState() {
+    getState(): RoomState {
         return {
             isPlaying: this.isPlaying,
             currentSong: this.placeholderSong,

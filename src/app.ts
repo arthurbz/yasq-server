@@ -5,6 +5,7 @@ import { router } from "./router.js"
 import { errorHandler } from "./middlewares/ErrorHandler.js"
 import { Server } from "socket.io"
 import { createServer } from "http"
+import { ClientToServerEvents, ServerToClientEvents } from "./types/SocketEvents.js"
 
 const app = express()
 
@@ -15,6 +16,6 @@ app.use(router)
 app.use(errorHandler)
 
 const server = createServer(app)
-const io = new Server(server, { cors: { origin: "*" } })
+const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, { cors: { origin: "*" } })
 
 export { server, io }
