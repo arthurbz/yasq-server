@@ -1,6 +1,6 @@
 import { io } from "./app.js"
 import { RoomMultiton } from "./room/RoomMultiton.js"
-import { Message } from "./types/models/Message.js"
+import { Message, TextMessage } from "./types/models/Message.js"
 
 io.on("connection", socket => {
     socket.on("joinRoom", (roomId: string) => {
@@ -23,7 +23,7 @@ io.on("connection", socket => {
         console.log("Pause - Room:", room.id)
     })
 
-    socket.on("sendMessage", (message: Message) => {
+    socket.on("sendMessage", (message: Message<TextMessage>) => {
         io.in(message.roomId).emit("receiveMessage", message)
     })
 
