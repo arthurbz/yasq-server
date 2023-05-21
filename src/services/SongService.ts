@@ -1,6 +1,6 @@
 import ytdl from "ytdl-core"
 import { prisma } from "../database/PrismaInstance.js"
-import { Song } from "../types/Song.js"
+import { Song } from "../types/models/Song.js"
 import { RoomService } from "./RoomService.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
 

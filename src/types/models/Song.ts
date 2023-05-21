@@ -1,6 +1,7 @@
-import { ResourceOrigin } from "./ResourceOrigin.js"
+import { ResourceOrigin } from "../ResourceOrigin.js"
 
 interface Song {
+    id?: string
     originId: string
     source: ResourceOrigin
     artist: string

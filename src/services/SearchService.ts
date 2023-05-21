@@ -1,6 +1,6 @@
 import { google } from "googleapis"
 import { BadRequest } from "../types/exceptions/BadRequest.js"
-import { Song } from "../types/Song.js"
+import { Song } from "../types/models/Song.js"
 
 class SearchService {
     private static instance: SearchService | undefined
