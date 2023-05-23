@@ -3,6 +3,7 @@ import { ParticipationService } from "../services/ParticipationService.js"
 import { UserService } from "../services/UserService.js"
 import { io } from "../app.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
+import dayjs from "dayjs"
 
 class ParticipationController {
     private participationService = ParticipationService.getInstance()
@@ -17,6 +18,14 @@ class ParticipationController {
         const participation = await this.participationService.joinRoom({ roomId, userId, isOwner: false })
 
         io.in(roomId).emit("refreshUsers")
+        io.in(roomId).emit("userJoined", {
+            roomId,
+            date: dayjs().unix(),
+            content: {
+                type: "userJoined",
+                user: participation.user
+            }
+        })
         res.status(201).send({
             roomId: participation.roomId,
             userId: participation.userId,
@@ -34,6 +43,14 @@ class ParticipationController {
         const participation = await this.participationService.joinRoom({ roomId, userId: user.id, isOwner: false })
 
         io.in(roomId).emit("refreshUsers")
+        io.in(roomId).emit("userJoined", {
+            roomId,
+            date: dayjs().unix(),
+            content: {
+                type: "userJoined",
+                user: participation.user
+            }
+        })
         res.status(201).send({
             roomId: participation.roomId,
             userId: user.id,

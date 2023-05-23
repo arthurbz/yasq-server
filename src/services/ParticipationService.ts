@@ -31,6 +31,7 @@ class ParticipationService {
         const room = await this.roomService.findByIdOrThrow(roomId)
 
         const existingParticipation = await prisma.participation.findFirst({
+            include: { user: true },
             where: {
                 userId: user.id,
                 roomId: room.id
@@ -39,6 +40,7 @@ class ParticipationService {
 
         return existingParticipation ||
             await prisma.participation.create({
+                include: { user: true },
                 data: {
                     isOwner,
                     userId: user.id,
