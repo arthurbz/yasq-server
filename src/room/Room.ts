@@ -9,7 +9,7 @@ class Room {
     private currentSong: Song | null
     private startedAt: number | null
     private pausedAt: number | null
-    private songList: Song[]
+    public songList: Song[]
 
     constructor(id: string) {
         this.songList = []
@@ -56,8 +56,10 @@ class Room {
         if (!song)
             return
 
-        if (this.songList.length == 0)
+        if (this.songList.length == 0) {
             this.currentSong = song
+            this.isPlaying = true
+        }
 
         this.songList.push(song)
     }
@@ -67,6 +69,11 @@ class Room {
 
         if (index != -1)
             this.songList.splice(index, 1)
+
+        if (this.songList.length == 0) {
+            this.currentSong = null
+            this.isPlaying = false
+        }
     }
 
     print() {

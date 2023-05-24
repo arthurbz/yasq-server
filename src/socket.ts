@@ -24,7 +24,7 @@ io.on("connection", socket => {
         const room = RoomMultiton.getInstance(roomId)
         room.play()
         io.in(room.id).emit("play")
-        console.log(action)
+
         io.in(roomId).emit("stateChanged", action)
     })
 

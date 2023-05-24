@@ -35,6 +35,10 @@ class SongController {
 
         const room = RoomMultiton.getInstance(roomId)
         room.addSong(song)
+        if (room.songList.length == 1) {
+            io.in(room.id).emit("currentState", room.getState())
+            io.in(room.id).emit("play")
+        }
 
         res.status(201).send({ id: song.id })
     }
