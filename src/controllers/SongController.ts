@@ -4,6 +4,7 @@ import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
 import { io } from "../app.js"
 import { UserService } from "../services/UserService.js"
 import dayjs from "dayjs"
+import { RoomMultiton } from "../room/RoomMultiton.js"
 
 class SongController {
     songService = SongService.getInstance()
@@ -31,6 +32,10 @@ class SongController {
                 type: "songAdded"
             }
         })
+
+        const room = RoomMultiton.getInstance(roomId)
+        room.addSong(song)
+
         res.status(201).send({ id: song.id })
     }
 
@@ -43,6 +48,10 @@ class SongController {
         const song = await this.songService.remove(id)
 
         io.in(song.roomId).emit("refreshSongs")
+
+        const room = RoomMultiton.getInstance(song.roomId)
+        room.removeSong(song.id)
+
         res.status(204).send()
     }
 

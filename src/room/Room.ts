@@ -1,5 +1,6 @@
 import { RoomState } from "../types/models/Room.js"
 import { Song } from "../types/models/Song.js"
+import { prisma } from "../database/PrismaInstance.js"
 import dayjs from "dayjs"
 
 class Room {
@@ -8,17 +9,12 @@ class Room {
     private currentSong: Song | null
     private startedAt: number | null
     private pausedAt: number | null
-
-    private readonly placeholderSong: Song = {
-        id: "6442e0d686696084024069e1",
-        originId: "c0-hvjV2A5Y",
-        name: "Fred again.. | Boiler Room: London",
-        source: "youtube",
-        artist: "Boiler Room",
-        thumbnail: "https://i.ytimg.com/vi/c0-hvjV2A5Y/maxresdefault.jpg"
-    }
+    private songList: Song[]
 
     constructor(id: string) {
+        this.songList = []
+        prisma.song.findMany({ where: { roomId: id } }).then(songs => this.songList = songs)
+
         this.id = id
         this.isPlaying = false
         this.currentSong = null
@@ -29,7 +25,7 @@ class Room {
     getState(): RoomState {
         return {
             isPlaying: this.isPlaying,
-            currentSong: this.placeholderSong,
+            currentSong: this.currentSong,
             songElapsedTime: this.getSongElapsedTime()
         }
     }
@@ -54,6 +50,30 @@ class Room {
 
         this.isPlaying = false
         this.pausedAt = dayjs().unix()
+    }
+
+    addSong(song: Song) {
+        if (!song)
+            return
+
+        if (this.songList.length == 0)
+            this.currentSong = song
+
+        this.songList.push(song)
+    }
+
+    removeSong(songId: string) {
+        const index = this.songList.findIndex(song => song.id === songId)
+
+        if (index != -1)
+            this.songList.splice(index, 1)
+    }
+
+    print() {
+        console.clear()
+        console.log("Room Id:", this.id)
+        console.log("Songs Length:", this.songList.length)
+        console.log(this.songList.map(s => s.id))
     }
 }
 
