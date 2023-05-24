@@ -1,5 +1,6 @@
 import { RoomState } from "../types/models/Room.js"
 import { Song } from "../types/models/Song.js"
+import { User } from "../types/models/User.js"
 import { prisma } from "../database/PrismaInstance.js"
 import dayjs from "dayjs"
 
@@ -9,11 +10,22 @@ class Room {
     private currentSong: Song | null
     private startedAt: number | null
     private pausedAt: number | null
-    public songList: Song[]
+    public songs: Map<string, Song>
+    public users: Map<string, User>
+    public usersReady: Map<string, boolean>
 
     constructor(id: string) {
-        this.songList = []
-        prisma.song.findMany({ where: { roomId: id } }).then(songs => this.songList = songs)
+        this.songs = new Map()
+        this.users = new Map()
+        this.usersReady = new Map()
+
+        prisma.song.findMany({ where: { roomId: id } })
+            .then(songs => songs.forEach(song => this.songs.set(song.id, song)))
+
+        prisma.participation.findMany({
+            include: { user: true },
+            where: { roomId: id }
+        }).then(participations => participations.map(p => this.users.set(p.user.id, p.user)))
 
         this.id = id
         this.isPlaying = false
@@ -56,31 +68,52 @@ class Room {
         if (!song)
             return
 
-        if (this.songList.length == 0) {
+        if (this.songs.size == 0) {
             this.currentSong = song
             this.isPlaying = true
         }
 
-        this.songList.push(song)
+        this.songs.set(song.id, song)
+
+        this.print()
     }
 
     removeSong(songId: string) {
-        const index = this.songList.findIndex(song => song.id === songId)
+        this.songs.delete(songId)
 
-        if (index != -1)
-            this.songList.splice(index, 1)
-
-        if (this.songList.length == 0) {
+        if (this.songs.size == 0) {
             this.currentSong = null
             this.isPlaying = false
         }
+
+        this.print()
+    }
+
+    addUser(user: User) {
+        if (!user)
+            return
+
+        this.users.set(user.id, user)
+
+        this.print()
+    }
+
+    removeUser(userId: string) {
+        this.users.delete(userId)
+
+        this.print()
     }
 
     print() {
         console.clear()
+        console.log("Date Time: ", dayjs().unix())
         console.log("Room Id:", this.id)
-        console.log("Songs Length:", this.songList.length)
-        console.log(this.songList.map(s => s.id))
+
+        console.log("Songs Length:", this.songs.size)
+        console.log("Songs:", [...this.songs.keys()].map(k => k))
+
+        console.log("Users Length:", this.users.size)
+        console.log("Users:", [...this.users.keys()].map(k => k))
     }
 }
 

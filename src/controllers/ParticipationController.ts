@@ -1,9 +1,10 @@
 import { Request, Response } from "express"
+import { io } from "../app.js"
+import dayjs from "dayjs"
 import { ParticipationService } from "../services/ParticipationService.js"
 import { UserService } from "../services/UserService.js"
-import { io } from "../app.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
-import dayjs from "dayjs"
+import { RoomMultiton } from "../room/RoomMultiton.js"
 
 class ParticipationController {
     private participationService = ParticipationService.getInstance()
@@ -26,6 +27,10 @@ class ParticipationController {
                 user: participation.user
             }
         })
+
+        const room = RoomMultiton.getInstance(roomId)
+        room.addUser(participation.user)
+
         res.status(201).send({
             roomId: participation.roomId,
             userId: participation.userId,
@@ -51,6 +56,10 @@ class ParticipationController {
                 user: participation.user
             }
         })
+
+        const room = RoomMultiton.getInstance(roomId)
+        room.addUser(participation.user)
+
         res.status(201).send({
             roomId: participation.roomId,
             userId: user.id,
@@ -65,6 +74,9 @@ class ParticipationController {
             throw new UnprocessableEntity("Missing participation to leave the room.")
 
         const participation = await this.participationService.leaveRoom(id)
+
+        const room = RoomMultiton.getInstance(participation.roomId)
+        room.removeUser(participation.userId)
 
         io.in(participation.roomId).emit("refreshUsers")
         res.status(204).send()
