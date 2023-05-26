@@ -12,12 +12,12 @@ class Room {
     private pausedAt: number | null
     public songs: Map<string, Song>
     public users: Map<string, User>
-    public usersReady: Map<string, boolean>
+    public usersReady: Set<string>
 
     constructor(id: string) {
         this.songs = new Map()
         this.users = new Map()
-        this.usersReady = new Map()
+        this.usersReady = new Set()
 
         prisma.song.findMany({ where: { roomId: id } })
             .then(songs => songs.forEach(song => this.songs.set(song.id, song)))
@@ -74,7 +74,6 @@ class Room {
         }
 
         this.songs.set(song.id, song)
-
         this.print()
     }
 
@@ -85,7 +84,6 @@ class Room {
             this.currentSong = null
             this.isPlaying = false
         }
-
         this.print()
     }
 
@@ -94,14 +92,20 @@ class Room {
             return
 
         this.users.set(user.id, user)
-
         this.print()
     }
 
     removeUser(userId: string) {
         this.users.delete(userId)
-
         this.print()
+    }
+
+    addReadyUser(userId: string) {
+        this.usersReady.add(userId)
+    }
+
+    readyForNextSong() {
+        return this.usersReady.size > Math.floor(this.users.size / 2)
     }
 
     print() {

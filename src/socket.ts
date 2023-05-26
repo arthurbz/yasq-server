@@ -41,4 +41,13 @@ io.on("connection", socket => {
     socket.on("textMessage", action => {
         io.in(action.roomId).emit("textMessage", action)
     })
+
+    socket.on("musicHasEnded", action => {
+        const room = RoomMultiton.getInstance(action.roomId)
+        room.addReadyUser(action.content.user.id)
+
+        // TODO: Room should set the currentSong if the song has already ended
+        if (room.readyForNextSong())
+            io.in(room.id).emit("currentState", room.getState())
+    })
 })
