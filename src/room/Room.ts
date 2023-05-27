@@ -116,21 +116,29 @@ class Room {
     }
 
     previousSong() {
+        if (this.songs.length == 0 || this.songs.length == 1)
+            return
+
         if (this.currentSongIndex == 0)
             this.currentSongIndex = this.songs.length - 1
         else
-            this.currentSongIndex += 1
+            this.currentSongIndex -= 1
 
         this.resetRoomToPlayingState()
+        this.print()
     }
 
     nextSong() {
+        if (this.songs.length == 0 || this.songs.length == 1)
+            return
+
         if (this.currentSongIndex == this.songs.length - 1)
             this.currentSongIndex = 0
         else
             this.currentSongIndex += 1
 
         this.resetRoomToPlayingState()
+        this.print()
     }
 
     private resetRoomToPlayingState() {
