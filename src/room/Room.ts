@@ -7,20 +7,20 @@ import dayjs from "dayjs"
 class Room {
     public id: string
     private isPlaying: boolean
-    private currentSong: Song | null
+    private currentSongIndex: number
     private startedAt: number | null
     private pausedAt: number | null
-    public songs: Map<string, Song>
+    public songs: Song[]
     public users: Map<string, User>
     public usersReady: Set<string>
 
     constructor(id: string) {
-        this.songs = new Map()
+        this.songs = []
         this.users = new Map()
         this.usersReady = new Set()
 
         prisma.song.findMany({ where: { roomId: id } })
-            .then(songs => songs.forEach(song => this.songs.set(song.id, song)))
+            .then(songs => this.songs = songs)
 
         prisma.participation.findMany({
             include: { user: true },
@@ -29,7 +29,7 @@ class Room {
 
         this.id = id
         this.isPlaying = false
-        this.currentSong = null
+        this.currentSongIndex = 0
         this.startedAt = null
         this.pausedAt = null
     }
@@ -37,7 +37,7 @@ class Room {
     getState(): RoomState {
         return {
             isPlaying: this.isPlaying,
-            currentSong: this.currentSong,
+            currentSong: this.currentSongIndex != null ? this.songs[this.currentSongIndex] : null,
             songElapsedTime: this.getSongElapsedTime()
         }
     }
@@ -68,21 +68,24 @@ class Room {
         if (!song)
             return
 
-        if (this.songs.size == 0) {
-            this.currentSong = song
-            this.isPlaying = true
+        if (this.songs.length == 0) {
+            this.currentSongIndex = 0
+            this.resetRoomToPlayingState()
         }
 
-        this.songs.set(song.id, song)
+        this.songs.push(song)
         this.print()
     }
 
     removeSong(songId: string) {
-        this.songs.delete(songId)
+        const index = this.songs.findIndex(song => song.id === songId)
 
-        if (this.songs.size == 0) {
-            this.currentSong = null
-            this.isPlaying = false
+        if (index != -1)
+            this.songs.splice(index, 1)
+
+        if (this.songs.length == 0) {
+            this.currentSongIndex = 0
+            this.resetRoomToPausedState()
         }
         this.print()
     }
@@ -105,16 +108,54 @@ class Room {
     }
 
     readyForNextSong() {
+        /*
+            If more than 50% of the users are ready
+            Ready meaning their browser has finished listening to the music
+        */
         return this.usersReady.size > Math.floor(this.users.size / 2)
+    }
+
+    previousSong() {
+        if (this.currentSongIndex == 0)
+            this.currentSongIndex = this.songs.length - 1
+        else
+            this.currentSongIndex += 1
+
+        this.resetRoomToPlayingState()
+    }
+
+    nextSong() {
+        if (this.currentSongIndex == this.songs.length - 1)
+            this.currentSongIndex = 0
+        else
+            this.currentSongIndex += 1
+
+        this.resetRoomToPlayingState()
+    }
+
+    private resetRoomToPlayingState() {
+        this.usersReady.clear()
+        this.isPlaying = true
+        this.pausedAt = null
+        this.startedAt = dayjs().unix()
+    }
+
+    private resetRoomToPausedState() {
+        this.usersReady.clear()
+        this.isPlaying = false
+        this.pausedAt = null
+        this.startedAt = null
     }
 
     print() {
         console.clear()
         console.log("Date Time: ", dayjs().unix())
         console.log("Room Id:", this.id)
+        console.log("Playing:", this.isPlaying)
+        console.log("Current Song Index:", this.currentSongIndex)
 
-        console.log("Songs Length:", this.songs.size)
-        console.log("Songs:", [...this.songs.keys()].map(k => k))
+        console.log("Songs Length:", this.songs.length)
+        console.log("Songs:", this.songs)
 
         console.log("Users Length:", this.users.size)
         console.log("Users:", [...this.users.keys()].map(k => k))

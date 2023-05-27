@@ -47,7 +47,9 @@ io.on("connection", socket => {
         room.addReadyUser(action.content.user.id)
 
         // TODO: Room should set the currentSong if the song has already ended
-        if (room.readyForNextSong())
+        if (room.readyForNextSong()) {
+            room.nextSong()
             io.in(room.id).emit("currentState", room.getState())
+        }
     })
 })
