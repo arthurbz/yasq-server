@@ -24,7 +24,8 @@ class Room {
 
         prisma.participation.findMany({
             include: { user: true },
-            where: { roomId: id }
+            where: { roomId: id },
+            orderBy: { createdAt: "desc" }
         }).then(participations => participations.map(p => this.users.set(p.user.id, p.user)))
 
         this.id = id
@@ -74,7 +75,6 @@ class Room {
         }
 
         this.songs.push(song)
-        this.print()
     }
 
     removeSong(songId: string) {
@@ -87,7 +87,6 @@ class Room {
             this.currentSongIndex = 0
             this.resetRoomToPausedState()
         }
-        this.print()
     }
 
     addUser(user: User) {
@@ -95,7 +94,6 @@ class Room {
             return
 
         this.users.set(user.id, user)
-        this.print()
     }
 
     removeUser(userId: string) {
@@ -125,7 +123,6 @@ class Room {
             this.currentSongIndex -= 1
 
         this.resetRoomToPlayingState()
-        this.print()
     }
 
     nextSong() {
@@ -138,7 +135,6 @@ class Room {
             this.currentSongIndex += 1
 
         this.resetRoomToPlayingState()
-        this.print()
     }
 
     private resetRoomToPlayingState() {

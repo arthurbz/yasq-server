@@ -60,8 +60,7 @@ io.on("connection", socket => {
         else if (action.content.goTo == "previous")
             room.previousSong()
 
-        console.clear()
-        console.log(room.getState())
         io.in(room.id).emit("currentState", room.getState())
+        io.in(room.id).emit("songChanged", action)
     })
 })
