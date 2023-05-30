@@ -59,7 +59,7 @@ class ParticipationService {
         if (roomParticipants.length == 1) {
             await this.delete(participation.id)
             await this.roomService.delete(roomId)
-            return
+            return participation
         }
 
         if (roomParticipants.length >= 2 && participation.isOwner) {
@@ -84,22 +84,22 @@ class ParticipationService {
     }
 
     findByIdOrThrow = async (id: string) => {
-        const room = await prisma.participation.findFirstOrThrow({
+        const participation = await prisma.participation.findFirstOrThrow({
             where: { id }
         })
 
-        return room
+        return participation
     }
 
     findOrThrow = async ({ userId, roomId }: UserAndRoom) => {
-        const room = await prisma.participation.findFirstOrThrow({
+        const participation = await prisma.participation.findFirstOrThrow({
             where: {
                 userId,
                 roomId
             }
         })
 
-        return room
+        return participation
     }
 
     findRoomParticipants = async (roomId: string) => {

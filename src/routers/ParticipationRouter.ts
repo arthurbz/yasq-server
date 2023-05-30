@@ -6,6 +6,7 @@ const participationRouter = Router()
 
 participationRouter.post("/join", participationController.join)
 participationRouter.post("/join/random", participationController.joinWithRandomUser)
+participationRouter.get("/find/:id", participationController.findById)
 participationRouter.get("/find/room/:roomId", participationController.findRoomParticipants)
 participationRouter.delete("/leave/:id", participationController.leave)
 

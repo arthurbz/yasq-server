@@ -1,13 +1,13 @@
 {
     "_type": "export",
     "__export_format": 4,
-    "__export_date": "2023-05-08T00:30:09.102Z",
+    "__export_date": "2023-05-30T01:09:45.356Z",
     "__export_source": "insomnia.desktop.app:v2022.5.1",
     "resources": [
         {
             "_id": "req_028aed7fe8d9496d95e0548f3de18dad",
             "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
-            "modified": 1683471275772,
+            "modified": 1683587368096,
             "created": 1681674920145,
             "url": "{{ _.server }}/user/create",
             "name": "Create",
@@ -15,7 +15,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"name\": \"User\"\n}"
+                "text": "{\n\t\"name\": \"AAAA\",\n\t\"pfpPath\": \"\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -107,7 +107,7 @@
         {
             "_id": "req_c725a09193c04aba9f3983fd74641e62",
             "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
-            "modified": 1683476855628,
+            "modified": 1683850111517,
             "created": 1681767038112,
             "url": "{{ _.server }}/user/update",
             "name": "Update",
@@ -115,7 +115,7 @@
             "method": "PUT",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"id\": \"643c93b960964e9de1c5ea50\",\n\t\"name\": \"name\"\n}"
+                "text": "{\n\t\"id\": \"6459811c5603ecc5fd0913ac\",\n\t\"name\": \"1231232131231\",\n\t\"pfpPath\": \"/images/froppy/0.png\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -139,9 +139,9 @@
         {
             "_id": "req_f49076f497e8490d8ae012198995e71e",
             "parentId": "fld_64e70a41cbca4e5bb47f2e2c18d86e9c",
-            "modified": 1681775166177,
+            "modified": 1684103650454,
             "created": 1681767144731,
-            "url": "{{ _.server }}/user/delete/643dda2a3a970011a91f1105",
+            "url": "{{ _.server }}/user/delete/645ae576f2bf16fc8c8bba47",
             "name": "Delete",
             "description": "",
             "method": "DELETE",
@@ -162,7 +162,7 @@
         {
             "_id": "req_d42a838e7ea5449dbfa138037f84188c",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1683505552259,
+            "modified": 1684886547731,
             "created": 1681691442751,
             "url": "{{ _.server }}/room/create",
             "name": "Create",
@@ -206,7 +206,7 @@
         {
             "_id": "req_ce896d2889f94835a6d4c2d884846524",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1683505688012,
+            "modified": 1685408838367,
             "created": 1682549002752,
             "url": "{{ _.server }}/room/create/random",
             "name": "Create With Random User",
@@ -238,9 +238,9 @@
         {
             "_id": "req_3d1420a479ca431fab48421b5cf0b499",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1683477330665,
+            "modified": 1684886557856,
             "created": 1681774516185,
-            "url": "{{ _.server }}/room/find/6457bbb99cab3afbd655a3e1",
+            "url": "{{ _.server }}/room/find/646d54177bd5976548794c9f",
             "name": "Find By Id",
             "description": "",
             "method": "GET",
@@ -261,7 +261,7 @@
         {
             "_id": "req_a4729a2ad5424d71bd1c718f338e5165",
             "parentId": "fld_62454278891a42979251e54cfd7504d9",
-            "modified": 1683472718292,
+            "modified": 1684886560061,
             "created": 1681774800178,
             "url": "{{ _.server }}/room/update",
             "name": "Update",
@@ -316,7 +316,7 @@
         {
             "_id": "req_c8a35e448ed04044995e80743f9ed2af",
             "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
-            "modified": 1683505545070,
+            "modified": 1685407283653,
             "created": 1683473278659,
             "url": "{{ _.server }}/participation/join",
             "name": "Join",
@@ -324,7 +324,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"roomId\": \"6457bbb99cab3afbd655a3e1\",\n\t\"userId\": \"6457c3abfd12b4202299e084\"\n}"
+                "text": "{\n\t\"roomId\": \"6462a1ff20df51981b9046ab\",\n\t\"userId\": \"645fa6bb9158fc0d577a709e\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -360,7 +360,7 @@
         {
             "_id": "req_d2ecea5efcae4c3095e067e9fc621b82",
             "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
-            "modified": 1683505689549,
+            "modified": 1685407326465,
             "created": 1683505444809,
             "url": "{{ _.server }}/participation/join/random",
             "name": "Join With Random User",
@@ -392,9 +392,9 @@
         {
             "_id": "req_f35abef07c774eaa8a9116cbda40734a",
             "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
-            "modified": 1683478248180,
+            "modified": 1685408844449,
             "created": 1683477066477,
-            "url": "{{ _.server }}/participation/find/room/6457bbb99cab3afbd655a3e1",
+            "url": "{{ _.server }}/participation/find/room/64754c482d57b34899473436",
             "name": "Find Room Participants",
             "description": "",
             "method": "GET",
@@ -413,11 +413,34 @@
             "_type": "request"
         },
         {
+            "_id": "req_7f85748e7594427982f0ee8dad469ddc",
+            "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
+            "modified": 1685407473678,
+            "created": 1685407462253,
+            "url": "{{ _.server }}/participation/find/6457bbc89cab3afbd655a3e4",
+            "name": "Find By Id",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [],
+            "authentication": {},
+            "metaSortKey": -1683473263792,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
             "_id": "req_3d3465eef31a4366900929016af7458e",
             "parentId": "fld_b9d96b0983ea4dd1aba926ecab891524",
-            "modified": 1683480979747,
+            "modified": 1685408849140,
             "created": 1683480404453,
-            "url": "{{ _.server }}/participation/leave/6457e17500ad6a4af0e80651",
+            "url": "{{ _.server }}/participation/leave/64754c482d57b34899473436",
             "name": "Leave",
             "description": "",
             "method": "DELETE",
@@ -438,7 +461,7 @@
         {
             "_id": "req_da85e07c6b884c15b4eca72c1910e22a",
             "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
-            "modified": 1683480424998,
+            "modified": 1684887680923,
             "created": 1682099768020,
             "url": "{{ _.server }}/song/add",
             "name": "Add",
@@ -446,7 +469,7 @@
             "method": "POST",
             "body": {
                 "mimeType": "application/json",
-                "text": "{\n\t\"info\": \"https://www.youtube.com/watch?v=c0-hvjV2A5Y&t=3542s\",\n\t\"roomId\": \"6457bbb99cab3afbd655a3e1\"\n}"
+                "text": "{\n\t\"info\": \"https://www.youtube.com/watch?v=5Idwmnfwkso\",\n\t\"roomId\": \"646d5710e559cfc65bac8615\"\n}"
             },
             "parameters": [],
             "headers": [
@@ -482,9 +505,9 @@
         {
             "_id": "req_1fa42d59e27a48119e0d3cb1072a35cd",
             "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
-            "modified": 1683478262711,
+            "modified": 1684887316225,
             "created": 1682121601314,
-            "url": "{{ _.server }}/song/find/room/6457bbb99cab3afbd655a3e1",
+            "url": "{{ _.server }}/song/find/room/646d5710e559cfc65bac8615",
             "name": "Find Room Songs",
             "description": "",
             "method": "GET",
@@ -505,9 +528,9 @@
         {
             "_id": "req_a4694428e8f84c8299673e8297987e1a",
             "parentId": "fld_8f05a4aa9e0c4fe28e8f077da02a32a0",
-            "modified": 1682122841759,
+            "modified": 1684887745710,
             "created": 1682122692805,
-            "url": "{{ _.server }}/song/remove/644327b6b9fa53040661aeaa",
+            "url": "{{ _.server }}/song/remove/646d582fc4f4f4afd45be540",
             "name": "Remove",
             "description": "",
             "method": "DELETE",
@@ -570,7 +593,7 @@
         {
             "_id": "env_a2d908b7381f526df473bdb1a38346d1ab3d9c64",
             "parentId": "wrk_e0cf40013b0d44f48359869d1d9cec6c",
-            "modified": 1680482990660,
+            "modified": 1685408972742,
             "created": 1680469359722,
             "name": "Base Environment",
             "data": {

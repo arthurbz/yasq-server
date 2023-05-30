@@ -1,6 +1,5 @@
 import { Request, Response } from "express"
 import { io } from "../app.js"
-import dayjs from "dayjs"
 import { ParticipationService } from "../services/ParticipationService.js"
 import { UserService } from "../services/UserService.js"
 import { UnprocessableEntity } from "../types/exceptions/UnprocessableEntity.js"
@@ -19,6 +18,7 @@ class ParticipationController {
         const participation = await this.participationService.joinRoom({ roomId, userId, isOwner: false })
 
         io.in(roomId).emit("refreshUsers")
+        /*
         io.in(roomId).emit("userJoined", {
             roomId,
             date: dayjs().unix(),
@@ -27,6 +27,7 @@ class ParticipationController {
                 user: participation.user
             }
         })
+        */
 
         const room = RoomMultiton.getInstance(roomId)
         room.addUser(participation.user)
@@ -48,6 +49,7 @@ class ParticipationController {
         const participation = await this.participationService.joinRoom({ roomId, userId: user.id, isOwner: false })
 
         io.in(roomId).emit("refreshUsers")
+        /*
         io.in(roomId).emit("userJoined", {
             roomId,
             date: dayjs().unix(),
@@ -56,6 +58,7 @@ class ParticipationController {
                 user: participation.user
             }
         })
+        */
 
         const room = RoomMultiton.getInstance(roomId)
         room.addUser(participation.user)
@@ -67,6 +70,17 @@ class ParticipationController {
         })
     }
 
+    findById = async (req: Request, res: Response) => {
+        const { id } = req.params
+
+        if (!id)
+            throw new UnprocessableEntity("Missing id to find participation.")
+
+        const participation = await this.participationService.findByIdOrThrow(id)
+
+        res.status(200).send(participation)
+    }
+
     leave = async (req: Request, res: Response) => {
         const { id } = req.params
 
@@ -74,6 +88,7 @@ class ParticipationController {
             throw new UnprocessableEntity("Missing participation to leave the room.")
 
         const participation = await this.participationService.leaveRoom(id)
+        console.log("DEPOIS", participation)
 
         const room = RoomMultiton.getInstance(participation.roomId)
         room.removeUser(participation.userId)
