@@ -98,7 +98,6 @@ class Room {
 
     removeUser(userId: string) {
         this.users.delete(userId)
-        this.print()
     }
 
     addReadyUser(userId: string) {

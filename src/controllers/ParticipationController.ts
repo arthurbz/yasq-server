@@ -88,7 +88,6 @@ class ParticipationController {
             throw new UnprocessableEntity("Missing participation to leave the room.")
 
         const participation = await this.participationService.leaveRoom(id)
-        console.log("DEPOIS", participation)
 
         const room = RoomMultiton.getInstance(participation.roomId)
         room.removeUser(participation.userId)
