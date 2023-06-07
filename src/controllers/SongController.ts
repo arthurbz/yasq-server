@@ -54,7 +54,14 @@ class SongController {
         io.in(song.roomId).emit("refreshSongs")
 
         const room = RoomMultiton.getInstance(song.roomId)
+
+        if (song.id === room.getState().currentSong.id) {
+            room.nextSong()
+            io.in(room.id).emit("currentState", room.getState())
+        }
+
         room.removeSong(song.id)
+
 
         res.status(204).send()
     }
